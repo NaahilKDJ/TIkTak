@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}TikTak{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bulma/css/bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        {% include 'boutique/navbar.html' %}
+    </header>
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

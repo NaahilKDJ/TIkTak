@@ -1,36 +1,45 @@
 Petit récap de l'avancement du projet
 
-Data Model
-  Utilisateur
-	  id
-	  email
-	  mdp
-	  nom
-	  prenom
-	  date de naissance
-	  date de création du compte
-	  type de profil (public/privé)
-	  photo de profile
+Ce projet est un réseau social du genre TikTok mais pour le moment avec des photos a la place des vidéos!
 
-  Publication:
-	  id
-	  titre --> optionnel
-	  auteur/créateur
-		      /* collaborateur(s) --> a voir */
-	  date de création
-	  date de modification --> potentiellement
-			    nombres de likes --> optionnel
-	  lien d'accès ou de visualisation
-	  visibilité (public/privé)
-		      /* tags */
+
+L'objectif étant de s'améliorer et se familiariser au mieux à l'usage de Django
+
+Pour commencer data model:
+	voir schéma à la racine du projet !
+
+
+Les fonctionnalités à développer (le strict minimum et nécessaire)
+	->	Inscription, connexion (par MAIL) et suppression de compte
+	-> 	Gestion de compte utilisateur : afficher les statistiques de l’utilisateur sur sa page (nombre de photo vue, de like, ... etc)
+	-> 	Pouvoir uploader des photos sur le fil ou en photo de profile
+	-> 	Système d’ajout/suppression des comptes suivis
+	-> 	Flux de photos aléatoires qui s’affiche lorsque l’on scroll
+	-> 	Système de like sur une photo
+
+
+Le développement
+
+	Je commence par préparer mon environnement
+		- setup d'un venv
+		- création des différentes apps nécessaires au projet
+		- création des templates de base (base.html)
+		- création des templates les plus importants (connexion, inscription, navbar)
+		- installation de la librairie CSS Bulma (Lien à la fin du README pour la source)
 	
+	J'attaque le développement des éléments du projet:
+		- création des models des différentes apps
 
-  Likes:
-	  id_publication
-	  utilisateur ayant liké
-	  date de like
 
-  Suivis
-	  id_suiveur
-	  id_suivis
-	  date de suivis
+
+
+
+
+Liens de sources / Annexes :
+
+	BULMA CSS :
+		https://bulma.io/documentation/start/overview/  							---> Documentation
+		https://github.com/jgthms/bulma/releases/download/1.0.2/bulma-1.0.2.zip  	---> Téléchargement de la librairie
+
+	Django documentation :
+		https://www.djangoproject.com
