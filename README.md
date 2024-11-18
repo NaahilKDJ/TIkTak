@@ -28,6 +28,7 @@ Le développement
 		- installation de la librairie CSS Bulma (Lien à la fin du README pour la source)
 	
 	J'attaque le développement des éléments du projet:
+		- petite retouche de settings.py (ajout des dossier static et templates + références vers les différentes apps )
 		- création des models des différentes apps
 
 
