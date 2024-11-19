@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts',
-    'auth'
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "boutique_en_ligne/static"
+    BASE_DIR / "static"
 ]
 
 # Default primary key field type
