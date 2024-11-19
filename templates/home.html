@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <br> <br> <br> <br>
+    <div class="box m-auto buttons is-flex" style="width:400px;">
+        <p class="has-text-centered m-auto">
+            Bienvenue sur TikTak 
+            Pour continuer veuillez 
+        </p>
+        <br> <br> <br>
+        <div class="buttons are-medium m-auto">
+            <a href="{% url 'signup' %}" class="button is-info"> Sign Up </a>
+
+            <a href="{% url 'login' %}" class="button is-primary"> Login </a>
+        </div>
+        
+    </div>
+{% endblock %}

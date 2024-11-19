@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% block title %} Inscription {% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'bulma/css/bulma.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <header>
-        <nav>
-            {% comment %} Bandelette titré {% endcomment %}
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <br><br>
-    {% comment %} Formulaire d'inscription {% endcomment %}
-    <br><br>
-</body>
-</html>
+{% block content %}
+    <br> <br> 
+    <h1 class="title has-text-centered"> Inscription </h1>
+    <br> <br>
+    
+    <div class="box m-auto " style="width:auto;">
+        
+        <h4 class="is-size-5 has-text-centered"> Veuillez renseigner les champs pour créer votre compte utilisateur </h4>
+        
+        <form>
+
+            
+        </form>
+    </div>
+{% endblock %}
