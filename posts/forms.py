@@ -8,5 +8,8 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'input'}),
             'description': forms.Textarea(attrs={'class': 'textarea'}),
-            'media': forms.FileInput(attrs={'class': 'file-input'})
+            'media': forms.FileInput(attrs={
+                'class': 'file-input',
+                'accept': 'image/*,video/*'
+            })
         }

@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.utils import timezone
 from .forms import CustomUserCreationForm
+from .models import Post
+from posts.models import Post
 
 # Create your views here.
 class SignupView(CreateView):
@@ -29,3 +31,8 @@ class HomeView(TemplateView):
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'profil.html'
     login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_posts'] = Post.objects.filter(user=self.request.user).order_by('-dateCreation')
+        return context

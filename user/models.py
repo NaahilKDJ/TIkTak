@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.utils import timezone
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -34,3 +35,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.nom} {self.prenom} né le {self.dateDeNaissance}"
+
+
+class Follow():
+    dateFollow = models.DateField(default=timezone.now)
+    followerID = models.IntegerField()
+    followedID = models.IntegerField()

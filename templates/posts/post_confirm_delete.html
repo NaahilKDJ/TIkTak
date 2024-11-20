@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="columns">
+    <div class="column is-2">
+        {% include 'sideMenu.html' %}
+    </div>
+    
+    <div class="column">
+        <div class="box">
+            <h1 class="title">Delete Post</h1>
+            <p>Are you sure you want to delete "{{ object.title }}"?</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="buttons">
+                    <button type="submit" class="button is-danger">Confirm Delete</button>
+                    <a href="{% url 'home' %}" class="button">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

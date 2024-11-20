@@ -1,0 +1,50 @@
+<div class="posts-container">
+    <div class="box mb-4">
+        <a href="{% url 'post-create' %}" class="button is-primary">
+            Create New Post
+        </a>
+    </div>
+
+    {% for post in posts %}
+        <div class="box post-box mb-5">
+            <article class="media">
+                <div class="media-left">
+                    {% if post.user.profilePic %}
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="{{ post.user.profilePic.url }}" alt="Profile picture">
+                        </figure>
+                    {% endif %}
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>{{ post.user.prenom }} {{ post.user.nom }}</strong>
+                            <small>@{{ post.user.email }}</small>
+                            <small>{{ post.dateCreation|timesince }} ago</small>
+                            {% if post.user == user %}
+                                <div class="buttons are-small is-pulled-right">
+                                    <a href="{% url 'post-update' post.pk %}" class="button is-info">Edit</a>
+                                    <a href="{% url 'post-delete' post.pk %}" class="button is-danger">Delete</a>
+                                </div>
+                            {% endif %}
+                            <br>
+                            <strong>{{ post.title }}</strong>
+                            {% if post.description %}
+                                <br>
+                                {{ post.description }}
+                            {% endif %}
+                        </p>
+                    </div>
+                    
+                    <figure class="image">
+                        <img src="{{ post.media.url }}" alt="{{ post.title }}">
+                    </figure>
+                </div>
+            </article>
+        </div>
+    {% empty %}
+        <div class="box has-text-centered">
+            <p>No posts yet!</p>
+        </div>
+    {% endfor %}
+</div>
