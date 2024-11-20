@@ -21,6 +21,11 @@ class SignupView(CreateView):
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'
+    redirect_authenticated_user = True
 
 class HomeView(TemplateView):
     template_name = 'home.html'
+
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'profil.html'
+    login_url = 'login'

@@ -5,13 +5,39 @@
     <h1 class="title has-text-centered"> Connexion </h1>
     <br> <br>
     
-    <div class="box m-auto " style="width:auto;">
+    <div class="box m-auto" style="max-width: 400px;">
+        <h4 class="is-size-5 has-text-centered mb-4"> Veuillez renseigner vos identifiants pour accéder à la plateforme </h4>
         
-        <h4 class="is-size-5 has-text-centered"> Veuillez renseigner vos identifiants pour accéder à la plateforme </h4>
-        
-        <form>
-
+        <form method="post">
+            {% csrf_token %}
             
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" type="email" name="username" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="password" required>
+                </div>
+            </div>
+
+            {% if form.errors %}
+                <p class="help is-danger">Your email or password is incorrect. Please try again.</p>
+            {% endif %}
+
+            <div class="field mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-primary is-fullwidth">Login</button>
+                </div>
+            </div>
         </form>
+
+        <p class="has-text-centered mt-4">
+            Don't have an account? <a href="{% url 'inscription' %}">Sign up here</a>
+        </p>
     </div>
 {% endblock %}
