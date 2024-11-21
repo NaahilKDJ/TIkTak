@@ -11,51 +11,18 @@
             <h1 class="title">{% if form.instance.pk %}Edit{% else %}New{% endif %} Post</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                
+                {% for field in form %}
                 <div class="field">
-                    <label class="label">{{ form.title.label }}</label>
+                    <label class="label">{{ field.label }}</label>
                     <div class="control">
-                        {{ form.title }}
+                        {{ field }}
                     </div>
-                    {% if form.title.errors %}
-                        <p class="help is-danger">{{ form.title.errors.0 }}</p>
+                    {% if field.errors %}
+                        <p class="help is-danger">{{ field.errors.0 }}</p>
                     {% endif %}
                 </div>
-
+                {% endfor %}
                 <div class="field">
-                    <label class="label">{{ form.description.label }}</label>
-                    <div class="control">
-                        {{ form.description }}
-                    </div>
-                    {% if form.description.errors %}
-                        <p class="help is-danger">{{ form.description.errors.0 }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="field">
-                    <label class="label">Media</label>
-                    <div class="file has-name">
-                        <label class="file-label">
-                            {{ form.media }}
-                            <span class="file-cta">
-                                <span class="file-icon">
-                                    <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="file-label">
-                                    Choose a file…
-                                </span>
-                            </span>
-                            <span class="file-name" id="filename">
-                                No file selected
-                            </span>
-                        </label>
-                    </div>
-                    {% if form.media.errors %}
-                        <p class="help is-danger">{{ form.media.errors.0 }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="field mt-5">
                     <div class="control">
                         <button type="submit" class="button is-primary">Save Post</button>
                     </div>
@@ -65,16 +32,4 @@
     </div>
 </div>
 
-<script>
-    const fileInput = document.querySelector('input[type=file]');
-    const fileName = document.querySelector('#filename');
-    
-    fileInput.addEventListener('change', () => {
-        if (fileInput.files.length > 0) {
-            fileName.textContent = fileInput.files[0].name;
-        } else {
-            fileName.textContent = 'No file selected';
-        }
-    });
-</script>
 {% endblock %} 

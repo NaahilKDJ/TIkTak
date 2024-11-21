@@ -9,6 +9,26 @@
             <a href="{% url 'home' %}" class="navbar-item">Home</a>
         </div>
         
+        {% if user.is_authenticated %}
+            <div class="navbar-item" style="flex-grow: 1; justify-content: center;">
+                <form action="{% url 'user-search' %}" method="get" style="width: 50%;">
+                    <div class="field has-addons">
+                        <div class="control has-icons-left is-expanded">
+                            <input class="input" type="text" name="q" placeholder="Search users...">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                        <div class="control">
+                            <button type="submit" class="button is-primary">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+        
         <div class="navbar-end">
             {% if not user.is_authenticated %}
                 <div class="navbar-item">
@@ -19,6 +39,21 @@
                         <a href="{% url 'login' %}" class="button is-light">
                             Log in
                         </a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a href="{% url 'profile' %}" class="button is-info">Profile</a>
+                        <form method="post" action="{% url 'logout' %}" class="is-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="button is-danger">
+                                <span class="icon">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <span>Logout</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             {% endif %}

@@ -9,7 +9,8 @@ class PostForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'input'}),
             'description': forms.Textarea(attrs={'class': 'textarea'}),
             'media': forms.FileInput(attrs={
-                'class': 'file-input',
+                'class': 'file',
+                'type' : 'file',
                 'accept': 'image/*,video/*'
             })
         }

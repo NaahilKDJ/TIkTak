@@ -1,20 +1,25 @@
 <aside class="menu">
-
+    <br>
     <ul class="menu-list">
-        <li><a href="{% url 'home' %}" {% if request.path == '/' %}class="is-active"{% endif %}> Explorer </a></li>
+        <li><a href="{% url 'home' %}" {% if request.path == '/' %}class="is-active is-dark"{% endif %}> Explorer </a></li>
         <li><a> Abonnements </a></li>
         <li><a> Amis        </a></li>
-        <li><a href="{% url 'profile' %}" {% if request.path == '/myPosts/' %}class="is-active"{% endif %}> Mes posts   </a></li>
-        <li><a href="{% url 'profile' %}" {% if request.path == '/profile/' %}class="is-active"{% endif %}> Profil </a></li>
+        <li><a href="{% url 'profile' %}" {% if request.path == '/myPosts/' %}class="is-active is-dark"{% endif %}> Mes posts   </a></li>
+        <li><a href="{% url 'profile' %}" {% if request.path == '/profile/' %}class="is-active is-dark"{% endif %}> Profil </a></li>
     </ul>
-    
+    <hr>
     {% if user.is_authenticated %}
-        <hr>
-        <p class="menu-label">Comptes Suivis</p>
-        <ul class="menu-list">
-            <li><a>User A</a></li>
-            <li><a>User B</a></li>
-            <li><a>User C</a></li>
+        <p class="menu-label has-text-centered is-size-6">Following</p>
+        <ul class="menu-list p-2">
+            {% for follow in user.following.all %}
+                <li>
+                    <a href="{% url 'user-detail' follow.following.pk %}">
+                        {{ follow.following.prenom }} {{ follow.following.nom }}
+                    </a>
+                </li>
+            {% empty %}
+                <li><em>Not following anyone yet</em></li>
+            {% endfor %}
         </ul>
     {% endif %}
 </aside>

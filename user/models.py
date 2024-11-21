@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -18,15 +19,15 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    nom = models.CharField(max_length=150)
-    prenom = models.CharField(max_length=150)
-    dateDeNaissance = models.DateField()
-    dateCreationCompte = models.DateField(auto_now_add=True)
-    private = models.BooleanField(default=True)
-    profilePic = models.FileField(upload_to='profile_pics/', blank=True, null=True)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
+    email               = models.EmailField(unique=True)
+    nom                 = models.CharField(max_length=150)
+    prenom              = models.CharField(max_length=150)
+    dateDeNaissance     = models.DateField()
+    dateCreationCompte  = models.DateField(auto_now_add=True)
+    private             = models.BooleanField(default=True)
+    profilePic          = models.FileField(upload_to='profile_pics/', blank=True, null=True)
+    is_active           = models.BooleanField(default=True)
+    is_staff            = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
@@ -41,3 +42,11 @@ class Follow():
     dateFollow = models.DateField(default=timezone.now)
     followerID = models.IntegerField()
     followedID = models.IntegerField()
+
+class UserFollow(models.Model):
+    follower = models.ForeignKey(get_user_model(), related_name='following', on_delete=models.CASCADE)
+    following = models.ForeignKey(get_user_model(), related_name='followers', on_delete=models.CASCADE)
+    date_followed = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('follower', 'following')

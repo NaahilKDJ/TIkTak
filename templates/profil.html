@@ -33,12 +33,15 @@
                             </span>
                             <span>New Post</span>
                         </a>
-                        <a href="{% url 'logout' %}" class="button is-danger">
-                            <span class="icon">
-                                <i class="fas fa-sign-out-alt"></i>
-                            </span>
-                            <span>Logout</span>
-                        </a>
+                        <form method="post" action="{% url 'logout' %}" class="is-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="button is-danger">
+                                <span class="icon">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <span>Logout</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

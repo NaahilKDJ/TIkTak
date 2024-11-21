@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="columns">
+    <div class="column is-2">
+        {% include 'sideMenu.html' %}
+    </div>
+    
+    <div class="column">
+        <div class="conrainer">
+            <h1 class="title">Search Results</h1>
+            {% if users %}
+                <div class="is-flex is-flex-wrap-wrap is-justify-content-start is-align-items-center">
+                {% for user in users %}
+                    <div class="box" style="width:fit-content;">
+                        <article class="media">
+                            <div class="media-left">
+                                {% if user.profilePic %}
+                                    <figure class="image is-64x64">
+                                        <img class="is-rounded" src="{{ user.profilePic.url }}" alt="Profile picture">
+                                    </figure>
+                                {% else %}
+                                    <figure class="image is-64x64">
+                                        <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" alt="Default profile">
+                                    </figure>
+                                {% endif %}
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong>{{ user.prenom }} {{ user.nom }}</strong>
+                                        <small>@{{ user.email }}</small>
+                                        <br>
+                                        <a href="{% url 'user-detail' user.pk %}" class="button is-small is-info mt-2">
+                                            View Profile
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+                </div>
+            {% else %}
+                <p class="has-text-centered">No users found matching your search.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

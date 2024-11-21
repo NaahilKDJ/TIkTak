@@ -19,7 +19,7 @@ class CustomUserCreationForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'class': 'input'}),
             'nom': forms.TextInput(attrs={'class': 'input'}), 
             'prenom': forms.TextInput(attrs={'class': 'input'}),
-            'profilePic': forms.FileInput(attrs={'class': '', 'type': 'file'}),
+            'profilePic': forms.FileInput(attrs={'class': 'file', 'type': 'file'}),
             'dateDeNaissance': forms.DateInput(attrs={'type': 'date', 'class': 'input'}),
         }
 
