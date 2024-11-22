@@ -92,6 +92,16 @@
                                 <figure class="image">
                                     <img src="{{ post.media.url }}" alt="{{ post.title }}">
                                 </figure>
+                                <nav class="level is-mobile mt-3">
+                                    <div class="level-left">
+                                        <span class="level-item">
+                                            <button class="button is-small is-light" onclick="toggleLike({{ post.id }})">
+                                                <span class="icon"><i class="fas fa-heart{% if user in post.likes.all %} has-text-danger{% endif %}"></i></span>
+                                                <span id="likes-count-{{ post.id }}">{{ post.likes_count }}</span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </nav>
                             </div>
                         </article>
                     </div>

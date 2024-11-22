@@ -33,6 +33,12 @@
                             </span>
                             <span>New Post</span>
                         </a>
+                        <a href="{% url 'delete-account' %}" class="button is-danger">
+                            <span class="icon">
+                                <i class="fas fa-user-times"></i>
+                            </span>
+                            <span>Delete Account</span>
+                        </a>
                         <form method="post" action="{% url 'logout' %}" class="is-inline">
                             {% csrf_token %}
                             <button type="submit" class="button is-danger">
@@ -76,8 +82,10 @@
                                 <nav class="level is-mobile mt-3">
                                     <div class="level-left">
                                         <span class="level-item">
-                                            <span class="icon"><i class="fas fa-heart"></i></span>
-                                            <span>{{ post.likes_count }}</span>
+                                            <button class="button is-small is-light" onclick="toggleLike({{ post.id }})">
+                                                <span class="icon"><i class="fas fa-heart{% if user in post.likes.all %} has-text-danger{% endif %}"></i></span>
+                                                <span id="likes-count-{{ post.id }}">{{ post.likes_count }}</span>
+                                            </button>
                                         </span>
                                     </div>
                                 </nav>

@@ -28,5 +28,27 @@
     
     {% block content %}
     {% endblock %}
+    <script>
+    function toggleLike(postId) {
+        fetch(`/post/${postId}/like/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const icon = document.querySelector(`#likes-count-${postId}`).previousElementSibling.querySelector('i');
+            const likesCount = document.querySelector(`#likes-count-${postId}`);
+            if (data.liked) {
+                icon.classList.add('has-text-danger');
+            } else {
+                icon.classList.remove('has-text-danger');
+            }
+            likesCount.textContent = data.likes_count;
+        });
+    }
+    </script>
 </body>
 </html>

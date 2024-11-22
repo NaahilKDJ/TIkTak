@@ -2,9 +2,8 @@
     <br>
     <ul class="menu-list">
         <li><a href="{% url 'home' %}" {% if request.path == '/' %}class="is-active is-dark"{% endif %}> Explorer </a></li>
-        <li><a> Abonnements </a></li>
-        <li><a> Amis        </a></li>
-        <li><a href="{% url 'profile' %}" {% if request.path == '/myPosts/' %}class="is-active is-dark"{% endif %}> Mes posts   </a></li>
+        <li class="is-disabled"><a> Abonnements </a></li>
+        <li class="is-disabled"><a> Amis        </a></li>
         <li><a href="{% url 'profile' %}" {% if request.path == '/profile/' %}class="is-active is-dark"{% endif %}> Profil </a></li>
     </ul>
     <hr>

@@ -12,6 +12,10 @@ from django.db.models import Q
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from .models import UserFollow
+from django.http import JsonResponse
+from posts.views import PostListView
+from django.contrib.auth import logout
+from django.contrib import messages
 
 
 # Create your views here.
@@ -33,7 +37,7 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         return self.success_url
 
-class HomeView(TemplateView):
+class HomeView(PostListView):
     template_name = 'home.html'
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -87,3 +91,30 @@ def follow_user(request, pk):
             elif 'unfollow' in request.POST:
                 UserFollow.objects.filter(follower=request.user, following=user_to_follow).delete()
     return redirect('user-detail', pk=pk)
+
+@login_required
+def like_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        if request.user in post.likes.all():
+            post.likes.remove(request.user)
+            liked = False
+        else:
+            post.likes.add(request.user)
+            liked = True
+        return JsonResponse({'liked': liked, 'likes_count': post.likes.count()})
+    return redirect('home')
+
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        user = request.user
+        # Delete all posts by the user
+        Post.objects.filter(user=user).delete()
+        # Delete the user (this will cascade delete followers/following relationships)
+        user.delete()
+        # Logout the user
+        logout(request)
+        messages.success(request, 'Your account has been successfully deleted.')
+        return redirect('login')
+    return render(request, 'user/confirm_delete_account.html')

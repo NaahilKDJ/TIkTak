@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="box mt-6">
+        <h1 class="title has-text-danger">Delete Account</h1>
+        <p class="mb-4">Are you sure you want to delete your account? This action cannot be undone and will:</p>
+        <ul class="mb-4">
+            <li>• Delete all your posts</li>
+            <li>• Remove you from other users' followers list</li>
+            <li>• Permanently delete your account information</li>
+        </ul>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-danger">
+                        <span class="icon">
+                            <i class="fas fa-trash"></i>
+                        </span>
+                        <span>Delete My Account</span>
+                    </button>
+                </div>
+                <div class="control">
+                    <a href="{% url 'profile' %}" class="button is-light">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
