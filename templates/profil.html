@@ -33,12 +33,12 @@
                             </span>
                             <span>New Post</span>
                         </a>
-                        <a href="{% url 'delete-account' %}" class="button is-danger">
+                        {% comment %} <a href="{% url 'delete-account' %}" class="button is-danger">
                             <span class="icon">
                                 <i class="fas fa-user-times"></i>
                             </span>
                             <span>Delete Account</span>
-                        </a>
+                        </a> {% endcomment %}
                         <form method="post" action="{% url 'logout' %}" class="is-inline">
                             {% csrf_token %}
                             <button type="submit" class="button is-danger">

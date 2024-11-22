@@ -12,5 +12,5 @@ urlpatterns = [
     path('user/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
     path('user/<int:pk>/follow/', follow_user, name='follow-user'),
     path('post/<int:post_id>/like/', like_post, name='like-post'),
-    path('delete-account/', delete_account, name='delete-account'),
+    # path('delete-account/', delete_account, name='delete-account'),
 ]
