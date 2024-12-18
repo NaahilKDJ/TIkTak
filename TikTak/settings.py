@@ -83,16 +83,16 @@ WSGI_APPLICATION = 'TikTak.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if os.getenv('DATABASE_URL'):
-    # Production settings (Render)
+if 'DATABASE_URL' in os.environ:
+    # Configuration pour Render (production)
     DATABASES = {
         'default': dj_database_url.config(
-            default=os.getenv('DATABASE_URL'),
-            conn_max_age=600
+            conn_max_age=600,
+            conn_health_checks=True,
         )
     }
 else:
-    # Development settings (local)
+    # Configuration locale (développement)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
