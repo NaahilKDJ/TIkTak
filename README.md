@@ -1,7 +1,6 @@
 Petit récap de l'avancement du projet
 
-Ce projet est un réseau social du genre TikTok mais pour le moment avec des photos a la place des vidéos!
-
+Ce projet est un réseau social du style TikTok mais pour le moment avec des photos a la place des vidéos!
 
 L'objectif étant de s'améliorer et se familiariser au mieux à l'usage de Django
 
@@ -18,23 +17,8 @@ Les fonctionnalités à développer (le strict minimum et nécessaire)
 	-> 	Système de like sur une photo
 
 
-Le développement
 
-	Je commence par préparer mon environnement
-		- setup d'un venv
-		- création des différentes apps nécessaires au projet
-		- création des templates de base (base.html)
-		- création des templates les plus importants (connexion, inscription, navbar)
-		- installation de la librairie CSS Bulma (Lien à la fin du README pour la source)
-	
-	J'attaque le développement des éléments du projet:
-		- petite retouche de settings.py (ajout des dossier static et templates + références vers les différentes apps )
-		- création des models des différentes apps
-
-
-
-
-
+A noter que l'utilisation d'une image docker pour la base de donnée est impérative pour pouvoir lancer le projet ( j'ai essayer d'utiliser pgAdmin pour avoir une BDD en local sans docker mais je ne maitrise pas correctement cette partie mais c'est une alternative pour contourner docker)
 
 Liens de sources / Annexes :
 
