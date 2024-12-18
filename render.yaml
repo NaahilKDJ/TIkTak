@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: tiktak
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn TikTak.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tiktak_db
+          property: connectionString
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+databases:
+  - name: tiktak_db
+    databaseName: tiktak
+    user: tiktak 
