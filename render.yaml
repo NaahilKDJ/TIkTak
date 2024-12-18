@@ -19,4 +19,4 @@ services:
 databases:
   - name: tiktak_db
     databaseName: tiktak
-    user: tiktak 
+    user: demo

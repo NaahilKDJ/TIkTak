@@ -2,23 +2,21 @@
 # exit on error
 set -o errexit
 
-# Install dependencies
+echo "Installing dependencies..."
 pip install -r requirements.txt
+pip freeze > requirements.txt
 
-# Collect static files
+echo "Collecting static files..."
 python manage.py collectstatic --no-input
 
-# Apply database migrations
-python manage.py makemigrations
-python manage.py migrate
+echo "Running migrations..."
 
-# Apply specific app migrations if needed
-python manage.py makemigrations user
-python manage.py makemigrations posts
-python manage.py migrate user
-python manage.py migrate posts
 
-# Create a superuser if needed (optional)
-echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin@example.com', 'adminpassword123') if not User.objects.filter(email='admin@example.com').exists() else None" | python manage.py shell
+python manage.py migrate user zero --noinput
+python manage.py migrate posts zero --noinput
+python manage.py migrate --noinput
 
-chmod +x build.sh
+# Crée un superuser pour l'administration
+echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin@example.com', 'adminpassword123', nom='Admin', prenom='Super', dateDeNaissance='2000-01-01') if not User.objects.filter(email='admin@example.com').exists() else None" | python manage.py shell
+
+chmod a+x build.sh

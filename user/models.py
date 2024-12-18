@@ -38,10 +38,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         return f"{self.nom} {self.prenom} né le {self.dateDeNaissance}"
 
 
-class Follow():
+class Follow(models.Model):
     dateFollow = models.DateField(default=timezone.now)
     followerID = models.IntegerField()
     followedID = models.IntegerField()
+
+    class Meta:
+        db_table = 'user_follow'
 
 class UserFollow(models.Model):
     follower = models.ForeignKey(get_user_model(), related_name='following', on_delete=models.CASCADE)
