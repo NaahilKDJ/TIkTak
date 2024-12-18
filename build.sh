@@ -18,4 +18,7 @@ python manage.py makemigrations posts
 python manage.py migrate user
 python manage.py migrate posts
 
+# Create a superuser if needed (optional)
+echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin@example.com', 'adminpassword123') if not User.objects.filter(email='admin@example.com').exists() else None" | python manage.py shell
+
 chmod +x build.sh
