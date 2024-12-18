@@ -37,6 +37,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f"{self.nom} {self.prenom} né le {self.dateDeNaissance}"
 
+    class Meta:
+        db_table = 'user_user'
 
 class Follow(models.Model):
     dateFollow = models.DateField(default=timezone.now)
