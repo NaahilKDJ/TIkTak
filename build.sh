@@ -1,25 +1,20 @@
 #!/usr/bin/env bash
-# exit on error
+# Exit on error
 set -o errexit
 
-echo "checking pip updates"
-pip install --upgrade pip
-
-
-echo "Installing dependencies..."
+# Modify this line as needed for your package manager (pip, poetry, etc.)
 pip install -r requirements.txt
 
-echo "Collecting static files..."
+# Convert static asset files
 python manage.py collectstatic --no-input
 
-echo "Running migrations..."
-# Créer les migrations si elles n'existent pas
+# Apply any outstanding database migrations
+echo "Création des migrations"
 python manage.py makemigrations
 
-
-# Appliquer les migrations dans l'ordre
-echo "Applying migrations..."
+echo "Migration vers la base de donnée"
 python manage.py migrate
 
+
+echo "Lancement du serveur"
 python manage.py runserver
-chmod a+x build.sh
