@@ -93,7 +93,9 @@ WSGI_APPLICATION = 'TikTak.wsgi.application'
 database_url = os.environ.get("DATABSE_URL")
 DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default='postgresql://demo:dkkBRxd7FKZqKb9LghzybGaGmmLW4E09@dpg-cti63ot6l47c738fqos0-a/tiktak_64ik'
+    )
 }
 
 # Password validation
