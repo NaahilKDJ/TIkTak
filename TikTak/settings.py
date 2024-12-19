@@ -97,7 +97,7 @@ DATABASES = {
     }
 }
 database_url = os.environ.get("DATABSE_INT_URL")
-DATABASES['default'] = dj_database_url.parse(database_url)
+DATABASES['default'] = dj_database_url.config(database_url)
 
 
 # Password validation
