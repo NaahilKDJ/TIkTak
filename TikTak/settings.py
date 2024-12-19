@@ -26,14 +26,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key-for-dev')
-
+print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" | ")
-
+print(ALLOWED_HOSTS)
 
 # Application definition
 
@@ -91,6 +91,7 @@ WSGI_APPLICATION = 'TikTak.wsgi.application'
 
 # Utilisation de dj_database_url
 database_url = os.environ.get("DATABSE_URL")
+print(database_url)
 DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
     'default': dj_database_url.config(
