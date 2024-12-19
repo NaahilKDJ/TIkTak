@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: TikTak
+    env: python
+    plan: free
+    buildCommand: 
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
+      - python manage.py collectstatic --no-input
+      - python manage.py makemigrations
+      - python manage.py migrate
+    startCommand: gunicorn TikTak.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://demo:dkkBRxd7FKZqKb9LghzybGaGmmLW4E09@dpg-cti63ot6l47c738fqos0-a/tiktak_64ik
+      - key: DJANGO_SECRET_KEY
+        sync: false
+        value: 70efb8f87f61a45794186efb3c164271
+    databases:
+      - name: tiktak-db
+        plan: free
+        region: frankfurt
+    staticPublishPath: staticfiles
+    autoDeploy: true
+    healthCheckPath: /

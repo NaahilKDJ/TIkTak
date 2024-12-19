@@ -25,14 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key-for-dev')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key-for-dev')
 print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" | ")
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 print(ALLOWED_HOSTS)
 
 # Application definition
@@ -90,12 +90,9 @@ WSGI_APPLICATION = 'TikTak.wsgi.application'
 
 
 # Utilisation de dj_database_url
-database_url = os.environ.get("DATABSE_URL")
-print(database_url)
 DATABASES = {
-    'ENGINE': 'django.db.backends.postgresql',
     'default': dj_database_url.config(
-        default='postgresql://demo:dkkBRxd7FKZqKb9LghzybGaGmmLW4E09@dpg-cti63ot6l47c738fqos0-a/tiktak_64ik'
+        default=os.getenv('DATABASE_URL')
     )
 }
 
@@ -133,7 +130,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
