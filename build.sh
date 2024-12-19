@@ -2,6 +2,10 @@
 # exit on error
 set -o errexit
 
+echo "checking pip updates"
+pip install --upgrade pip
+
+
 echo "Installing dependencies..."
 pip install -r requirements.txt
 

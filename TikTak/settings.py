@@ -87,26 +87,13 @@ WSGI_APPLICATION = 'TikTak.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if 'DATABASE_URL' in os.environ:
-    # Configuration pour Render (production)
-    DATABASES = {
-        'default': dj_database_url.config(
-            conn_max_age=600,
-            conn_health_checks=True,
-        )
-    }
-else:
-    # Configuration locale (développement)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'tiktak',
-            'USER': 'demo',
-            'PASSWORD': 'azertyuiop',
-            'HOST': 'postgresql://demo:z24poCVNtBpSzZxvuLfDfcOZrxHcttGZ@dpg-cthf8c1u0jms7384buog-a.frankfurt-postgres.render.com/tiktak_fkgz',
-            'PORT': '5432',
-        }
-    }
+DATABASES = {
+    'default':dj_database_url.config(
+        default='postgresql://demo:z24poCVNtBpSzZxvuLfDfcOZrxHcttGZ@dpg-cthf8c1u0jms7384buog-a/tiktak_fkgz',
+        conn_max_age=700,
+        conn_health_checks=True
+    )
+}
 
 
 # Password validation
