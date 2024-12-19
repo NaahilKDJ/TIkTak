@@ -28,11 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key-for-dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 
 
-ALLOWED_HOSTS = ['35.157.117.28', '3.125.183.140', '3.75.158.163', '.onrender.com', 'localhost']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" | ")
 
 
 # Application definition
@@ -90,35 +90,14 @@ WSGI_APPLICATION = 'TikTak.wsgi.application'
 
 
 # Utilisation de dj_database_url
-if 'DATABASE_URL' in os.environ:
-
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=os.getenv('DATABASE_URL'),  # Utilise DATABASE_URL défini par Render
-            conn_max_age=700,
-            conn_health_checks=True
-        )
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR/"ds.sqlite3",
     }
-else :
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=os.getenv('postgresql://demo:z24poCVNtBpSzZxvuLfDfcOZrxHcttGZ@dpg-cthf8c1u0jms7384buog-a/tiktak_fkgz'),  # Utilise DATABASE_URL défini par Render
-            conn_max_age=700,
-            conn_health_checks=True
-        )
-    }
-
-# Configuration classique avec utilisation de variable d'environnement
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME'),           #'tiktak_fkgz'
-#         'USER': os.getenv('DB_USER'),           #'demo'
-#         'PASSWORD': os.getenv('DB_PASSWORD'),   #'z24poCVNtBpSzZxvuLfDfcOZrxHcttGZ'
-#         'HOST': os.getenv('DB_HOST'),           #'dpg-cthf8c1u0jms7384buog-a'
-#         'PORT': os.getenv('DB_PORT'),           # '5432'
-#     }
-# }
+}
+database_url = os.environ.get("DATABSE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
 
 
 # Password validation
