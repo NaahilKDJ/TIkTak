@@ -89,14 +89,24 @@ WSGI_APPLICATION = 'TikTak.wsgi.application'
 
 
 
-# Utilisation de dj_database_url 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),  # Utilise DATABASE_URL défini par Render
-        conn_max_age=700,
-        conn_health_checks=True
-    )
-}
+# Utilisation de dj_database_url
+if 'DATABASE_URL' in os.environ:
+
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),  # Utilise DATABASE_URL défini par Render
+            conn_max_age=700,
+            conn_health_checks=True
+        )
+    }
+else :
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('postgresql://demo:z24poCVNtBpSzZxvuLfDfcOZrxHcttGZ@dpg-cthf8c1u0jms7384buog-a/tiktak_fkgz'),  # Utilise DATABASE_URL défini par Render
+            conn_max_age=700,
+            conn_health_checks=True
+        )
+    }
 
 # Configuration classique avec utilisation de variable d'environnement
 # DATABASES = {
