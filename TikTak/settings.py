@@ -90,25 +90,25 @@ WSGI_APPLICATION = 'TikTak.wsgi.application'
 
 
 # Utilisation de dj_database_url 
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=os.getenv('DATABASE_URL'),  # Utilise DATABASE_URL défini par Render
-#         conn_max_age=700,
-#         conn_health_checks=True
-#     )
-# }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),  # Utilise DATABASE_URL défini par Render
+        conn_max_age=700,
+        conn_health_checks=True
+    )
+}
 
 # Configuration classique avec utilisation de variable d'environnement
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),           #'tiktak_fkgz'
-        'USER': os.getenv('DB_USER'),           #'demo'
-        'PASSWORD': os.getenv('DB_PASSWORD'),   #'z24poCVNtBpSzZxvuLfDfcOZrxHcttGZ'
-        'HOST': os.getenv('DB_HOST'),           #'dpg-cthf8c1u0jms7384buog-a'
-        'PORT': os.getenv('DB_PORT'),           # '5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DB_NAME'),           #'tiktak_fkgz'
+#         'USER': os.getenv('DB_USER'),           #'demo'
+#         'PASSWORD': os.getenv('DB_PASSWORD'),   #'z24poCVNtBpSzZxvuLfDfcOZrxHcttGZ'
+#         'HOST': os.getenv('DB_HOST'),           #'dpg-cthf8c1u0jms7384buog-a'
+#         'PORT': os.getenv('DB_PORT'),           # '5432'
+#     }
+# }
 
 
 # Password validation
