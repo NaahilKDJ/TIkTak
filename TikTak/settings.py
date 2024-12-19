@@ -30,7 +30,9 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key-for-dev')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
+
+
+ALLOWED_HOSTS = ['35.157.117.28', '3.125.183.140', '3.75.158.163', '.onrender.com', 'localhost']
 
 
 # Application definition
@@ -101,7 +103,7 @@ else:
             'NAME': 'tiktak',
             'USER': 'demo',
             'PASSWORD': 'azertyuiop',
-            'HOST': 'localhost',
+            'HOST': 'postgresql://demo:z24poCVNtBpSzZxvuLfDfcOZrxHcttGZ@dpg-cthf8c1u0jms7384buog-a.frankfurt-postgres.render.com/tiktak_fkgz',
             'PORT': '5432',
         }
     }
